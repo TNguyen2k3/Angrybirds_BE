@@ -65,8 +65,7 @@ router.post("/logout", (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
 
     console.log("Received Token:", token); 
-    if (!token) {
-        
+    if (!token || token == "") {
         return res.status(200).json({ message: "No token provided" });
     }
 
