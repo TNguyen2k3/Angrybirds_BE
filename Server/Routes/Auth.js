@@ -61,13 +61,13 @@ router.post('/login', async (req, res) => {
 const revokedTokens = new Set();
 
 // Đăng xuất (Logout)
-router.post("/logout", authMiddleware, (req, res) => {
+router.post("/logout", (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
 
     console.log("Received Token:", token); 
     if (!token) {
-        console.log("No token provided");
-        return res.status(400).json({ message: "No token provided" });
+        
+        return res.status(200).json({ message: "No token provided" });
     }
 
     try {
