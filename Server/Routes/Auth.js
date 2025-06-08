@@ -78,7 +78,7 @@ router.post("/logout", (req, res) => {
         return res.json({ message: "Logged out successfully" });
     } catch (err) {
         console.log("Invalid token");
-        return res.status(400).json({ message: "Invalid token" });
+        return res.status(200).json({ message: "Invalid token" });
     }
 });
 
