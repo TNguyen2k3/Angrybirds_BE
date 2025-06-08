@@ -105,6 +105,9 @@ router.post("/request-otp", async (req, res) => {
             // Gửi OTP qua email
             await sendMail(user.gmail, `Mã OTP của bạn là: ${otp}`);
         } 
+        else {
+            return res.status(400).json({ message: "Email or username is not exist" });
+        }
         console.log("message: OTP đã được gửi!");
 
         return res.json({ success: true, message: `OTP ${otp} đã được gửi!` });
@@ -116,10 +119,6 @@ router.post("/request-otp", async (req, res) => {
 
 router.post("/verify-otp", async (req, res) => {
     const { username, otp } = req.body;
-
-    if (!username || !otp) {
-        return res.status(400).json({ success: false, message: "Vui lòng nhập username hoặc OTP!" });
-    }
 
     try {
         // Tìm user theo email hoặc username
